@@ -1,0 +1,18 @@
+import winsound
+import time
+
+#length of the sound
+duration = 1000
+#the frequency
+freq = 440
+#starting time
+now = time.time()
+#ending time
+future = now + 10
+
+#runs for a few seconds
+while(time.time() < future):
+    #generates the sound
+    winsound.Beep(freq, duration)
+    #allows the sound to be played longer
+    time.sleep(1)
