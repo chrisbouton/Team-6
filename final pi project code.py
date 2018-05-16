@@ -1,4 +1,4 @@
-#####################################################################################################################################################################################
+#######################################################################################################################################################################################
 #Name: Ellen Manuel, Chris Bouton, David Borgognoni
 #Date: 15 May 2018
 #Description: Team 6 - Security System
@@ -10,7 +10,7 @@ import timeimport sys, time
 import RPi.GPIO as GPIO
 from time import sleep
 
-
+#RGB Setup
 redPin = 12
 greenPin = 13
 bluePin = 6
@@ -107,19 +107,30 @@ class Security(Frame):
 				security.geometry("640x640+0+0")
 				#if user is named "ellen"...
 				if (name == "ellen"):
-					
+					#enter green led phase
+					turnOff(bluePin)
+					sleep(.1)
+					blink(greenPin)
 					#set up the security window with the setupEllen function in the EnterButton class
 					window.setupEllen()
 					#break out of this loop so it check the next name, if applicable
 					break
 				#if user is named "chris" ...
 				if(name == "chris"):
+					#enter green led phase
+					turnOff(bluePin)
+					sleep(.1)
+					blink(greenPin)
 					#set up the security window with the setupChris function in the EnterButton class
 					window.setupChris()
 					#break out of this loop to check the next name, if applicable
 					break
 				#if user is named "david" ...
 				elif(name == "david"):
+					#turn on green led
+					turnOff(bluePin)
+					sleep(.1)
+					blink(greenPin)
 					#set up the security window with the setupDavid function in the EnterButton class
 					window.setupDavid()
 					#break out of this loop to check next name, if applicable
@@ -137,13 +148,17 @@ class Security(Frame):
                 		#sets new future value to allow the loop to work more than once
                 		future = now + 10
 				
+				#blink red to indicate wrong
 				turnOff(bluePin)
 				sleep(.1)
 				blink(redPin)
 				sleep(1)
 				turnOff(redPin)
 				sleep(1)
+				#turn blue back on, aka secure mode back on
 				turnOn(bluePin)
+
+
 GPIO.cleanup()
 blink(bluePin)
 #creates the root window that will act as the main window of the program// starting window of the program
