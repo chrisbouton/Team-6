@@ -104,12 +104,12 @@ class Security(Frame):
 					window.setupDavid()
 					#break out of this loop to check next name, if applicable
 					break
-				else:
-					while(time.time() < future):
-                    				#generates the sound
-                    				winsound.Beep(freq, duration)
-                    				#allows the sound to be played longer
-                    				time.sleep(1)
+			else:
+				while(time.time() < future):
+                    			#generates the sound
+                    			winsound.Beep(freq, duration)
+                    			#allows the sound to be played longer
+                    			time.sleep(1)
                 			#resets future to run each time incorrect info is entered
                 			future = now + 10
 		
