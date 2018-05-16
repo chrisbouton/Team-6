@@ -6,7 +6,26 @@
 
 from Tkinter import *
 import winsound
-import time
+import timeimport sys, time
+import RPi.GPIO as GPIO
+from time import sleep
+
+
+redPin = 12
+greenPin = 13
+bluePin = 6
+
+
+def blink(pin):
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(pin, GPIO.OUT)
+    GPIO.output(pin, 1)
+def turnOff(pin):
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(pin, GPIO.OUT)
+    GPIO.output(pin, 0)
+
+
 
 #class that sets up different windows for each user and has information stored for each user
 class EnterButton(Frame):
@@ -88,6 +107,7 @@ class Security(Frame):
 				security.geometry("640x640+0+0")
 				#if user is named "ellen"...
 				if (name == "ellen"):
+					
 					#set up the security window with the setupEllen function in the EnterButton class
 					window.setupEllen()
 					#break out of this loop so it check the next name, if applicable
@@ -104,8 +124,10 @@ class Security(Frame):
 					window.setupDavid()
 					#break out of this loop to check next name, if applicable
 					break
+				
 			#if login info is incorrect
 			else:
+				
 				#plays a sound that lasts for a few seconds 
 				while(time.time() < future):
                     			#generates the sound
@@ -114,7 +136,16 @@ class Security(Frame):
                     			time.sleep(1)
                 		#sets new future value to allow the loop to work more than once
                 		future = now + 10
-		
+				
+				turnOff(bluePin)
+				sleep(.1)
+				blink(redPin)
+				sleep(1)
+				turnOff(redPin)
+				sleep(1)
+				turnOn(bluePin)
+GPIO.cleanup()
+blink(bluePin)
 #creates the root window that will act as the main window of the program// starting window of the program
 root = Tk()
 window = Security(root)
