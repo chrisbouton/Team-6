@@ -112,8 +112,8 @@ class Security(Frame):
                     			winsound.Beep(freq, duration)
                     			#allows the sound to be played longer
                     			time.sleep(1)
-                			#resets future to run each time incorrect info is entered
-                			future = now + 10
+                		#sets new future value to allow the loop to work more than once
+                		future = now + 10
 		
 #creates the root window that will act as the main window of the program// starting window of the program
 root = Tk()
