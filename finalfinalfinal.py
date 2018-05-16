@@ -4,8 +4,9 @@
 #Description: Team 6 - Security System
 #####################################################################################################################################################################################
 
-
 from Tkinter import *
+import winsound
+import time
 
 #class that sets up different windows for each user and has information stored for each user
 class EnterButton(Frame):
@@ -68,7 +69,16 @@ class Security(Frame):
 	def correcto(self, name, password):		
 		#dictionary that stores name and password pairs for each user
 		logins = {"ellen" : "ecm889", "chris" : "cb65", "david" : "db885"}
-
+		
+		#length of the sound
+       		duration = 1000
+        	#the frequency
+       		freq = 440
+        	#starting time
+        	now = time.time()
+        	#ending time
+        	future = now + 10
+		
 		#checks to see if name and password match to make a new user
 		for login in logins:
 		    if (name in logins and password == logins[name]):
@@ -94,6 +104,14 @@ class Security(Frame):
 					window.setupDavid()
 					#break out of this loop to check next name, if applicable
 					break
+				else:
+					while(time.time() < future):
+                    				#generates the sound
+                    				winsound.Beep(freq, duration)
+                    				#allows the sound to be played longer
+                    				time.sleep(1)
+                			#resets future to run each time incorrect info is entered
+                			future = now + 10
 		
 #creates the root window that will act as the main window of the program// starting window of the program
 root = Tk()
