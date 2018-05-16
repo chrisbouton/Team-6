@@ -104,7 +104,9 @@ class Security(Frame):
 					window.setupDavid()
 					#break out of this loop to check next name, if applicable
 					break
+			#if login info is incorrect
 			else:
+				#plays a sound that lasts for a few seconds 
 				while(time.time() < future):
                     			#generates the sound
                     			winsound.Beep(freq, duration)
